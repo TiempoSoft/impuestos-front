@@ -1,0 +1,224 @@
+<template>
+  <div class="app-container">
+    <input
+      type="file"
+      id="files"
+      @change="handleFileSelect()"
+      name="files[]"
+      multiple
+    />
+    <output id="list"></output>
+    <div>
+      <label for="" id="label"></label>
+    </div>
+    <button @click="enviar_datos(comprobantes)">mandar</button>
+  </div>
+
+  <!-- <div class="app-container">
+    <el-card class="box-card">
+      <div id="files">
+        <p id="texto">Add file</p>
+        <input
+          type="file"
+          id="files"
+          @change="handleFileSelect()"
+          name="files[]"
+          multiple
+        />
+      </div>
+      <output id="list"></output>
+      <div>
+        <label for="" id="label"></label>
+      </div>
+    </el-card>
+  </div> -->
+</template>
+
+  <!-- <div class="app-container">
+    <input
+      type="file"
+      id="files"
+      @change="handleFileSelect()"
+      name="files[]"
+      multiple
+    />
+    <output id="list"></output>
+    <div>
+      <label for="" id="label"></label>
+    </div>
+  </div> -->
+
+<script>
+import axios from "axios";
+
+export default {
+  methods: {
+    submitFile() {
+      let formData = new FormData();
+      formData.append("file", this.file);
+      console.log(">> formData >> ", formData);
+
+      // You should have a server side REST API
+      axios
+        .post("http://localhost:8080/restapi/fileupload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then(function () {
+          console.log("SUCCESS!!");
+        })
+        .catch(function () {
+          console.log("FAILURE!!");
+        });
+    },
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0];
+      console.log(">>>> 1st element in files array >>>> ", this.file);
+    },
+  },
+
+  // data() {
+  //   return {
+  //     comprobantes: "",
+  //   };
+  // },
+  // created: {
+  //   enviar_datos() {
+  //     axios
+  //       .post("localhost:3000/ivatemp/importar-comprobante", this.comprobantes)
+  //       .then((result) => {
+  //         console.log("resultado", JSON.stringify(result.status));
+  //         if (result.status === 201) {
+  //           this.$alert(
+  //             "Usted actualizo el articulo con exito.",
+  //             "Actualizar Articulo",
+  //             {
+  //               confirmButtonText: "OK",
+  //               callback: (action) => {
+  //                 this.$modal.hide("PagosFactura");
+  //               },
+  //             }
+  //           );
+  //         }
+  //       })
+  //       .catch(function (err) {
+  //         console.log(err);
+  //       });
+  //   },
+  // },
+  // methods: {
+  //   enviar_datos(comprobantes) {
+  //     axios
+  //       .post("localhost:3000/ivatemp/importar-comprobante", this.comprobantes)
+  //       .then((result) => {
+  //         console.log("resultado", JSON.stringify(result.status));
+  //         if (result.status === 201) {
+  //           this.$alert(
+  //             "Usted actualizo el articulo con exito.",
+  //             "Actualizar Articulo",
+  //             {
+  //               confirmButtonText: "OK",
+  //               callback: (action) => {
+  //                 this.$modal.hide("PagosFactura");
+  //               },
+  //             }
+  //           );
+  //         }
+  //       })
+  //       .catch(function (err) {
+  //         console.log(err);
+  //       });
+  //   },
+  //   verdatos() {
+  //     document.getElementById("files");
+  //     console.log("ver input", document.getElementById("files"));
+  //   },
+  //   handleFileSelect(evt) {
+  //     if (!evt) evt = window.event;
+  //     var files = evt.target.files;
+  //     var file;
+  //     for (var i = 0; i < files.length; i++) {
+  //       file = files.item(i);
+  //       file = files[i];
+  //     }
+  //     file;
+  //     this.comprobantes = file;
+  //     var output = [];
+  //     for (var i = 0, f; (f = files[i]); i++) {
+  //       output.push(
+  //         "<li><strong>",
+  //         escape(f.name),
+  //         "</strong> (",
+  //         f.type || "n/a",
+  //         ") - ",
+  //         f.size,
+  //         "</li>"
+  //       );
+  //     }
+  //     document.getElementById("list").innerHTML =
+  //       "<ul>" + output.join("") + "</ul>";
+  //     this.enviar_datos();
+  //     console.log("ver", this.enviar_datos());
+  //   },
+  // },
+};
+</script> 
+
+
+
+
+
+<style scoped>
+.excel-upload-input {
+  display: none;
+  z-index: -9999;
+}
+.drop {
+  /* border: 2px dashed #bbb; */
+  width: 600px;
+  height: 160px;
+  line-height: 160px;
+  margin: 0 auto;
+  font-size: 24px;
+  /* border-radius: 5px; */
+  text-align: center;
+  color: #bbb;
+  position: relative;
+}
+/* .input {
+  width: 400px;
+  height: 80px;
+}
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: helvetica;
+} */
+
+/* p#texto {
+  text-align: center;
+  color: white;
+}
+
+div#files {
+  position: relative;
+  margin: 50px;
+  padding: 10px;
+  width: 150px;
+  background-color: #2499e3;
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: 0px 3px 0px #1a71a9;
+}
+
+input#files {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+} */
+</style>

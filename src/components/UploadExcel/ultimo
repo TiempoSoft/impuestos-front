@@ -1,0 +1,58 @@
+<template>
+  <div id="app">
+    <label
+      >File
+      <input
+        type="file"
+        id="file"
+        ref="file"
+        v-on:change="handleFileUpload()"
+      />
+    </label>
+    <button v-on:click="submitFile()">Submit</button>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+var file;
+export default {
+  data() {
+    return {
+      formData,
+      file: "",
+    };
+  },
+  methods: {
+    VerGet() {},
+    submitFile() {
+      let formData = new FormData();
+      formData.append("name", this.file.name);
+      formData.append("type", this.file.type);
+      formData.append("size", this.file.size);
+      formData.append("lastModified", this.file.lastModified);
+      formData.append("webkitRelativePath", this.file.webkitRelativePath);
+      console.log(">> formData >> ", formData);
+
+      // You should have a server side REST API
+      axios
+        .post("http://localhost:3000/ivatemp/importar-comprobante/", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((result) => {
+          console.log("resultado", JSON.stringify(result.status));
+        })
+        .catch(function () {
+          console.log("FAILURE!!");
+        });
+    },
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0];
+      console.log(">>>> 1st element in files array >>>> ", this.file);
+    },
+  },
+};
+</script>
+

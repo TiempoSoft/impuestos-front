@@ -1,0 +1,46 @@
+import Axios from "axios";
+export const baseURL = process.env.VUE_APP_API_URL;
+
+export const axiosProvider = Axios.create({
+  baseURL,
+});
+
+export const ALL_ROUTES = Object.freeze({
+  DATOSGENERALES: "DatosGenerales",
+  USERPERMISSIONS: "Userpermissions",
+  USERCOMPANIES: "userCompanies",
+  USERLOCALITY: "userLocality",
+  SYSTEMDATA: "SystemData",
+  STATE: "State",
+  BUSINESSACTIVITIES: "businessActivities",
+  COMPANIESTENANT: "CompaniesTenant",
+  COUNTRYTENANT: "CountryTenant",
+  CURRENCYEXANGERATE: "CurrencyExangeRate",
+  DOCUMENTS: "Documents",
+  ENTITIESTENANT: "EntitiesTenant",
+  FISCALYEARSTENANT: "FiscalYearsTenant",
+  LOCALITYTENANT: "LocalityTenant",
+  MONEYTENANT: "MoneyTenant",
+  PERMISSIONSTENANT: "PermissionsTenant",
+  POINTOFSALETENANT: "PointOfSaleTenant",
+  STATETENANT: "StateTenant",
+  TAXESTENANT: "TaxesTenant",
+  USERCOMPANIESTENANT: "userCompaniesTenant",
+  USERPERMISSIONSTENANT: "UserPermissionsTenant",
+  USERSTENANT: "UsersTenant",
+  VOUCHERSTENANT: "VouchersTenant",
+  VOUCHERSEXITTENANT: "VouchersExitTenant",
+  VOUCHERSPOINTOFSALE: "VouchersPointOfSale",
+  COMPANIES: "Companies",
+  AUDITLOGS: "auditLogs",
+  COUNTRY: "country",
+  USER: "User",
+  ACCOUNTTENANT: "AccountTenant",
+  ACCOUNTINGENTRIES: "AccountingEntries",
+  INVOICESTAXESTENANT: "InvoicesTaxesTenant",
+  VATIBTENANT: "VatIbTenant",
+  INVOICESTENANT: "InvoicesTenant",
+  TYPEOFEXPENSES: "TypeOfExpensesTenant",
+  CLASSTYPEINVOICETENANT: "ClassTypeInvoiceTenant",
+  JURISDICTION: "JurisdictionTenant",
+});

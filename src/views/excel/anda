@@ -1,0 +1,263 @@
+<template>
+  <div class="app-container">
+    <el-card>
+      <div class="drop">
+        <upload-excel-component
+          :on-success="handleSuccess"
+          :before-upload="beforeUpload"
+        />
+        <div class="drop">Comprobantes</div>
+        <el-table
+          class="tabla"
+          @current-change="handleCurrentChangeTable"
+          :data="this.$store.state.b.ResultadoExcel"
+          border
+          highlight-current-row
+          style="width: 100%; margin-top: 20px"
+        >
+          <el-table-column prop="fecha" label="Fecha" width="100" />
+          <el-table-column prop="    " label="Tipo y Nro Comp." width="100" />
+          <el-table-column prop="total" label="Imp.Total" width="100" />
+          <el-table-column prop="neto" label="Imp.Neto" width="100" />
+          <el-table-column prop="iva" label="Imp.Iva" width="100" />
+          <el-table-column prop="porcentajeIva" label="% Iva" width="100" />
+          <el-table-column prop="diferencia" label="Diferencia" width="100" />
+          <el-table-column prop="nograv" label="Imp.No Grav." width="100" />
+          <el-table-column prop="exentos" label="Imp.Exentos" width="100" />
+          <el-table-column
+            prop="impuestosNacionales"
+            label="Impuestos Nac."
+            width="100"
+          />
+          <el-table-column
+            prop="impuestosMunicipales"
+            label="Impuestos Munic."
+            width="100"
+          />
+          <el-table-column
+            prop="impuestosInternacionales"
+            label="Impuestos Inter."
+            width="100"
+          />
+          <el-table-column
+            prop="otrosImpuestos"
+            label="Otros Impuestos"
+            width="100"
+          />
+          <el-table-column
+            prop="ivaPercepcion"
+            label="Iva Percepción"
+            width="100"
+          />
+          <el-table-column
+            prop="iibbPercepcion"
+            label="IIBB Percepción"
+            width="100"
+          />
+          <el-table-column
+            prop="comercioExterior"
+            label="Comercio Exterior"
+            width="100"
+          />
+          <el-table-column prop="sircreb" label="Sircreb" width="100" />
+          <el-table-column
+            prop="noCategorizados"
+            label="No Categorizados"
+            width="100"
+          />
+          <el-table-column prop="cae" label="Cae" width="100" />
+          <el-table-column
+            prop="valido"
+            label="Valido"
+            width="100"
+            type="selection"
+          />
+          <el-table-column prop="error" label="Error" width="500" />
+        </el-table>
+      </div>
+
+      <br />
+      <div>
+        <div class="drop">Clientes</div>
+        <el-table
+          @current-change="handleCurrentChangeTable"
+          :data="this.$store.state.b.tablaCliente"
+          class="tabla"
+          border
+          highlight-current-row
+          style="width: 100%; margin-top: 20px"
+          :verExcel="verExcel"
+        >
+          <!-- <el-table-column label="Tipo Doc." width="150" /> -->
+          <el-table-column prop="neto" label="Número" width="auto" />
+          <!-- <el-table-column label="Razón Social" width="200" />
+          <el-table-column label="Dirección" width="150" />
+          <el-table-column label="Localidad" width="150" />
+          <el-table-column label="Provincia" width="150" />
+          <el-table-column label="Cód.Postal" width="200" />
+          <el-table-column label="Condición" width="auto" /> -->
+        </el-table>
+        <br /><br />
+        <div align="center" class="drop" style="width: 80%; margin-left: 8%">
+          IMPORTANTE: Primero debe corregir los errores encontrados en el
+          comprobante, luego procesarlos y finalmente elegir las actividades de
+          Afip e IIBB
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div align="center" class="drop" style="width: 80%; margin-left: 8%">
+          Seleccione la cta deudores:
+          <el-input class="drop" style="width: 10%"></el-input>
+          <el-input class="drop" style="width: 15%; margin-left: 2%"></el-input>
+          <el-button
+            size="mini"
+            icon="el-icon-setting"
+            style="margin-left: 1%"
+            @click="abrirModalCuentaDeudores()"
+          ></el-button>
+          <el-button
+            size="mini"
+            type="primary"
+            icon="el-icon-caret-right"
+            style="margin-left: 8%"
+            >Procesar</el-button
+          >
+          <el-button
+            size="mini"
+            type="primary"
+            icon="el-icon-date"
+            @click="abrirModalExcelDetalle()"
+            >Detalle</el-button
+          >
+          <el-button size="mini" type="primary" icon="el-icon-date"
+            >Afip/IBB</el-button
+          >
+        </div>
+      </div>
+    </el-card>
+    <modal
+      name="ExcelDetalle"
+      :scrollable="true"
+      :reset="true"
+      width="60%"
+      height="auto"
+      draggable=".app-container"
+    >
+      <ExcelDetalle :Comprobante="this.currentRow" />
+    </modal>
+    <modal
+      name="CuentaDeudores"
+      :scrollable="true"
+      :reset="true"
+      width="60%"
+      height="auto"
+      draggable=".app-container"
+    >
+      <CuentaDeudores :CuentaDeudores="this.options" />
+    </modal>
+  </div>
+</template>
+
+<script>
+import UploadExcelComponent from "@/components/UploadExcel/index.vue";
+import ExcelDetalle from "./components/ExcelDetalle";
+import CuentaDeudores from "./components/CuentaDeudores";
+import FormatoDeImpresionLibroIva from "../compras/components/FormatoDeImpresionLibroIva";
+
+export default {
+  name: "UploadExcel",
+  components: {
+    UploadExcelComponent,
+    ExcelDetalle,
+    FormatoDeImpresionLibroIva,
+    CuentaDeudores,
+  },
+  data() {
+    return {
+      tablaCliente: {
+        tipoDoc: "",
+        nroDoc: "",
+        razonSocial: "",
+        direccion: "",
+        localidad: "",
+        provincia: "",
+        codigoPostal: "",
+        condicion: "",
+      },
+
+      currentRow: [{}],
+      DatosExcelRespuestasApi: {},
+    };
+  },
+  methods: {
+    handleCurrentChangeTable(val) {
+      this.currentRow = val;
+      this.$store.state.b.tablaCliente = this.currentRow;
+      this.tablaCliente.tipoDoc = this.currentRow.tipoDoc;
+      this.tablaCliente.nroDoc = this.currentRow.nroDoc;
+      this.tablaCliente.razonSocial = this.currentRow.razonSocial;
+      this.tablaCliente.direccion = this.currentRow.direccion;
+      this.tablaCliente.localidad = this.currentRow.localidad;
+      this.tablaCliente.provincia = this.currentRow.provincia;
+      this.tablaCliente.codigoPostal = this.currentRow.codigoPostal;
+      this.tablaCliente.condicion = this.currentRow.condicion;
+      this.tablaCliente.neto = this.currentRow.neto;
+    },
+
+    abrirModalCuentaDeudores() {
+      this.$modal.show("CuentaDeudores");
+      console.log("store2", this.DatosExcelRespuestasApi);
+    },
+    abrirModalExcelDetalle() {
+      this.$modal.show("ExcelDetalle");
+      console.log("store2", this.DatosExcelRespuestasApi);
+    },
+    beforeUpload(file) {
+      const isLt1M = file.size / 1024 / 1024 < 1;
+
+      if (isLt1M) {
+        return true;
+      }
+
+      this.$message({
+        message: "Please do not upload files larger than 1m in size.",
+        type: "warning",
+      });
+      return false;
+    },
+    handleSuccess({ results, header }) {
+      this.tableData = results;
+      this.tableHeader = header;
+      // this.excelData.data = datos;
+      console.log("verdatosheader", header);
+      console.log("verdatosresults", results);
+    },
+  },
+  computed: {
+    verExcel() {
+      // this.currentRow = this.$store.state.b.tablaCliente;
+      console.log("tabla", this.tablaCliente.neto);
+      // console.log("store2", this.$store.state.b.tablaCliente);
+    },
+  },
+};
+</script>
+<style scoped>
+.tabla {
+  font-size: 12px;
+}
+.drop {
+  /* border: 2px dashed #bbb;
+  width: 600px;
+  height: 160px;
+  line-height: 160px;
+  margin: 0 auto; */
+  font-size: 15px;
+  /* border-radius: 5px;
+  text-align: center;
+  color: #bbb;
+  position: relative; */
+}
+</style>

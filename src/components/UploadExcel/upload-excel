@@ -1,0 +1,144 @@
+<template>
+  <div class="app-container">
+    <el-card>
+      <upload-excel-component
+        :on-success="handleSuccess"
+        :before-upload="beforeUpload"
+      />
+      <div class="drop">Comprobantes</div>
+      <el-table
+        :data="tableData"
+        border
+        highlight-current-row
+        style="width: 100%; margin-top: 20px"
+      >
+        <el-table-column
+          v-for="item of tableHeader"
+          :key="item"
+          :prop="item"
+          :label="item"
+        />
+      </el-table>
+      <br />
+      <div class="drop">Clientes</div>
+      <el-table
+        :data="tableData"
+        border
+        highlight-current-row
+        style="width: 100%; margin-top: 20px"
+      >
+        <el-table-column
+          v-for="item of tableHeader"
+          :key="item"
+          :prop="item"
+          :label="item"
+        />
+      </el-table>
+      <br /><br />
+      <div align="center" class="drop" style="width: 80%; margin-left: 8%">
+        IMPORTANTE: Primero debe corregir los errores encontrados en el
+        comprobante, luego procesarlos y finalmente elegir las actividades de
+        Afip e IIBB
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <div align="center" class="drop" style="width: 80%; margin-left: 8%">
+        Seleccione la cta deudores:
+        <el-input class="drop" style="width: 10%"></el-input>
+        <el-input class="drop" style="width: 15%; margin-left: 2%"></el-input>
+        <el-button
+          size="mini"
+          type="primary"
+          icon="el-icon-caret-right"
+          style="margin-left: 8%"
+          >Procesar</el-button
+        >
+        <el-button
+          size="mini"
+          type="primary"
+          icon="el-icon-date"
+          @click="abrirModalExcelDetalle()"
+          >Detalle</el-button
+        >
+
+        <el-button size="mini" type="primary" icon="el-icon-date"
+          >Afip/IBB</el-button
+        >
+      </div>
+    </el-card>
+    <modal
+      name="ExcelDetalle"
+      :scrollable="true"
+      :reset="true"
+      width="60%"
+      height="auto"
+      draggable=".app-container"
+    >
+      <ExcelDetalle :ExcelDetalle="datosExcelDetalle" />
+    </modal>
+  </div>
+</template>
+
+<script>
+import UploadExcelComponent from "@/components/UploadExcel/index.vue";
+import ExcelDetalle from "./components/ExcelDetalle";
+
+import FormatoDeImpresionLibroIva from "../compras/components/FormatoDeImpresionLibroIva";
+export default {
+  name: "UploadExcel",
+  components: {
+    UploadExcelComponent,
+    ExcelDetalle,
+    FormatoDeImpresionLibroIva,
+  },
+  data() {
+    return {
+      tableData: [],
+      tableHeader: [],
+    };
+  },
+  methods: {
+    abrirModalFormatoDeImpresionLibroIva() {
+      console.log("hola");
+      this.$modal.show("FormatoDeImpresionLibroIva");
+    },
+    abrirModalExcelDetalle() {
+      this.$modal.show("ExcelDetalle");
+      console.log("modal", this.$modal.show("ExcelDetalle"));
+    },
+    beforeUpload(file) {
+      const isLt1M = file.size / 1024 / 1024 < 1;
+
+      if (isLt1M) {
+        return true;
+      }
+
+      this.$message({
+        message: "Please do not upload files larger than 1m in size.",
+        type: "warning",
+      });
+      return false;
+    },
+    handleSuccess({ results, header }) {
+      this.tableData = results;
+      this.tableHeader = header;
+    },
+  },
+};
+</script>
+<style scoped>
+.drop {
+  /* border: 2px dashed #bbb;
+  width: 600px;
+  height: 160px;
+  line-height: 160px;
+  margin: 0 auto; */
+  font-size: 15px;
+  /* border-radius: 5px;
+  text-align: center;
+  color: #bbb;
+  position: relative; */
+}
+</style>
