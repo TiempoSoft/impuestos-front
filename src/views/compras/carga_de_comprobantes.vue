@@ -95,13 +95,11 @@
       </div>
       <el-card shadow="hover">
 
-        <!-- CAPOCAPOCAPOACAEMPIEZALACARD< -->
         <!-- Primera Columna -->
         <el-row>
 
-
           <el-col :span="8">
-            <!-- NETO -->
+              <!-- NETO -->
 
             <el-row>
               <el-col :span="10" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
@@ -268,6 +266,7 @@
           </el-col>
 
           <!-- Tercera columna -->
+
           <el-col :span="8">
             <div class="columnaIva">
 
@@ -338,7 +337,7 @@
         <div class="columnaMedio">
           <el-form-item class="formItem1" label="TOTAL :">
             <el-input @input="" type="text" v-model="formulario.invoice.total_amount" class="uniform-input" size="default"
-              readonly></el-input>
+            readonly></el-input>
           </el-form-item>
           <el-form-item label="RUBRO :">
             <el-select size="mini" v-model="formulario.invoice.heading" class="uniform-input" placeholder="Rubros">
@@ -380,14 +379,16 @@ export default {
   components: {
     ModalImportarComprobante,
   },
+
   data() {
     return {
       neto: 0,
       iva: 0,
-      ivas: [],
+      ivas: [],    
       montoIva: "",
       tasaIva: "",
       netoIva: "",
+      ivaIva: "",
       rules: {
         invoice_class: [
           { required: true, message: 'La clase es obligatoria', trigger: 'blur' },
@@ -618,19 +619,26 @@ export default {
   },
   methods: {
     pushIva() {
-      let iva = {
-        taxes_id: 1,
-        name: "IVA",
-        vat_rate: this.tasaIva + "%",
-        value: this.montoIva,
-        net: this.netoIva
-      }
+      this.ivaIva = parseFloat(this.tasaIva) * (parseFloat(this.netoIva)/100)
+      this.montoIva = parseFloat(this.ivaIva) 
+      if (!isNaN(parseFloat(this.tasaIva))) {
+        let iva = {
+          taxes_id: 1,
+          name: "IVA",
+          vat_rate: this.tasaIva + "%",
+          value: this.montoIva,
+          net: this.netoIva
+        }
       this.formulario.taxes.push(iva)
       this.ivas.push(iva)
+      let total = ""      
+      this.netoIva = ""
       this.tasaIva = ""
       this.montoIva = ""
-      this.netoIva = ""
       this.calcularTotal()
+      } else {
+        console.error("El valor de tasaIva no es un número válido.")
+      }
     },
     handleDeleteIvas(index, row) {
       this.neto = Number(this.neto) - Number(row.net)
@@ -766,9 +774,10 @@ export default {
      this.formulario.invoice.invoice_net = this.ivas[0].net
       return Number(this.ivas[0].value)
     },
+
     async calcularTotal() {
       this.iva = this.sumaMontoIvas()
-      this.neto = parseFloat(this.formulario.invoice.invoice_net) || 0;
+      this.neto = parseFloat(this.formulario.invoice.invoice_net) || 0;    
       this.formulario.taxes[0].value = (parseFloat(this.formulario.taxes[0].value) || 0).toFixed(2);
       this.formulario.taxes[1].value = (parseFloat(this.formulario.taxes[1].value) || 0).toFixed(2);
       this.formulario.taxes[2].value = (parseFloat(this.formulario.taxes[2].value) || 0).toFixed(2);

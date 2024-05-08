@@ -93,7 +93,7 @@
                         </el-row>
                         <el-row :gutter="20">
                             <el-col :span="4" :offset="7">
-                                <el-checkbox label="Compras" name="type"></el-checkbox>
+                                <el-checkbox label="" name="type"></el-checkbox>
                             </el-col>
                             <el-col :span="7" :offset="0">
                                 <el-checkbox label="Ventas" name="type"></el-checkbox>

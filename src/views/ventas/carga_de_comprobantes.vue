@@ -94,7 +94,7 @@
         </el-row>
       </div>
       <el-card shadow="hover">
-        <!-- CAPOCAPOCAPOACAEMPIEZALACARD< -->
+        
         <!-- Primera Columna -->
         <el-row>
 
@@ -236,7 +236,7 @@
                     <el-input type="text" v-model="netoIva" class="uniform-input" size="mini" style="width:70px"
                       placeholder="Neto"></el-input>
                     <el-input type="text" v-model="montoIva" class="uniform-input" style="width:70px" size="mini"
-                      placeholder="Monto"></el-input>
+                      placeholder=""></el-input>
                     <el-button size="mini" type="info" style="margin-left: 2%" @click="pushIva()">+</el-button>
                   </div>
 
