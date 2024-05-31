@@ -97,129 +97,120 @@
         
         <!-- Primera Columna -->
         <el-row>
-
-
           <el-col :span="8">
+
             <!-- NETO -->
 
             <el-row>
-              <el-col :span="10" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+              <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
               <el-col :span="2" :offset="0"> <el-input type="text" size="mini" class="uniform-input"
-                  v-model="formulario.invoice.invoice_net" @change="calcularTotal"><template
+                  v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"><template
                     slot="append">$</template></el-input></el-col>
             </el-row>
+          <el-row>
 
-            <el-row>
               <!-- IVA DEBITO FISCAL -->
 
               <el-row>
-                <el-col :span="10"><el-form-item label="IVA DEBITO FISCAL:" class="formItem1"></el-form-item></el-col>
-                <el-col :span="2"><el-input @change="calcularTotal" type="text" v-model="formulario.sumIvas"
-                    class="uniform-input" size="mini" placeholder="0"><template
+                <el-col :span="11"><el-form-item label="IVA DEBITO FISCAL:" class="formItem1"></el-form-item></el-col>
+                <el-col :span="2"><el-input readonly @change="calcularTotal" type="text" v-model="formulario.sumIvas"
+                    class="uniform-input" size="mini" placeholder="0.00"><template
                       slot="append">$</template></el-input></el-col>
               </el-row>
-
 
               <!-- COMERCIO EXTERIOR -->
 
               <el-row>
-                <el-col :span="10"><el-form-item label="COMERCIO EXTERIOR :" class="formItem1"></el-form-item></el-col>
+                <el-col :span="11"><el-form-item label="COMERCIO EXTERIOR :" class="formItem1"></el-form-item></el-col>
                 <el-col :span="2"><el-input @change="calcularTotal" type="text" v-model="formulario.taxes[0].value"
-                    class="uniform-input" size="mini" placeholder="0"><template
+                    class="uniform-input" size="mini" placeholder="0.00" clearable><template
                       slot="append">$</template></el-input></el-col>
               </el-row>
-
 
               <!-- IVA PERCEPCIÓN -->
 
               <el-row>
-                <el-col :span="10"><el-form-item label="IVA PERCEPCIÓN :" class="formItem1"></el-form-item></el-col>
+                <el-col :span="11"><el-form-item label="IVA PERCEPCIÓN :" class="formItem1"></el-form-item></el-col>
                 <el-col :span="2"><el-input @change="calcularTotal" type="text" v-model="formulario.taxes[1].value"
-                    class="uniform-input" placeholder="0" size="mini"><template
+                    class="uniform-input" placeholder="0.00" size="mini"><template
                       slot="append">$</template></el-input></el-col>
               </el-row>
-
 
               <!-- IMPUESTOS INTERNOS -->
 
               <el-row>
-                <el-col :span="10"><el-form-item label="IMPUESTOS INTERNOS :" class="formItem1"></el-form-item></el-col>
+                <el-col :span="11"><el-form-item label="IMPUESTOS INTERNOS :" class="formItem1"></el-form-item></el-col>
                 <el-col :span="2"><el-input @change="calcularTotal" type="text" v-model="formulario.taxes[2].value"
-                    class="uniform-input" placeholder="0" size="mini"><template
+                    class="uniform-input" placeholder="0.00" size="mini"><template
                       slot="append">$</template></el-input></el-col>
               </el-row>
-
 
               <!-- IMPORTES NO GRAVADOS -->
 
               <el-row>
-                <el-col :span="10"><el-form-item label="IMPORTES NO GRAVADOS :" class="formItem1"></el-form-item></el-col>
-                <el-col :span="2"><el-input @change="calcularTotal" type="text" placeholder="0"
+                <el-col :span="11"><el-form-item label="IMPORTES NO GRAVADOS :" class="formItem1"></el-form-item></el-col>
+                <el-col :span="2"><el-input @change="calcularTotal" type="text" placeholder="0.00"
                     v-model="formulario.taxes[3].value" class="uniform-input" size="mini"><template
                       slot="append">$</template></el-input></el-col>
               </el-row>
 
-
               <!-- EXENTOS -->
 
               <el-row>
-                <el-col :span="10"><el-form-item label="EXENTOS :" class="formItem1"></el-form-item></el-col>
+                <el-col :span="11"><el-form-item label="EXENTOS :" class="formItem1"></el-form-item></el-col>
                 <el-col :span="2"><el-input @change="calcularTotal" type="text" v-model="formulario.taxes[4].value"
-                    class="uniform-input" size="mini" placeholder="0"><template
+                    class="uniform-input" size="mini" placeholder="0.00"><template
                       slot="append">$</template></el-input></el-col>
               </el-row>
-
-
-              <!-- II.BB PERCEPCIÓN -->
-
-              <el-row>
-                <el-col :span="10"><el-form-item label="II.BB PERCEPCIÓN :" class="formItem1"></el-form-item></el-col>
-                <el-col :span="2"><el-input @change="calcularTotal" type="text" v-model="formulario.taxes[5].value"
-                    class="uniform-input" size="mini" placeholder="0"><template
-                      slot="append">$</template></el-input></el-col>
-              </el-row>
-
             </el-row>
           </el-col>
 
           <!-- Segunda columna -->
-          <!-- NO CATEGORIZADOS -->
+          
           <el-col :span="8">
 
+          <!-- II.BB PERCEPCIÓN -->
+
+          <el-row>
+              <el-col :span="11"><el-form-item label="II.BB PERCEPCIÓN :" class="formItem1"></el-form-item></el-col>
+              <el-col :span="2"><el-input @change="calcularTotal" type="text" v-model="formulario.taxes[5].value"
+                  class="uniform-input" size="mini" placeholder="0.00"><template
+                    slot="append">$</template></el-input></el-col>
+          </el-row>
+           
+          <!-- NO CATEGORIZADOS -->
+
             <el-row>
-              <el-col :span="10"><el-form-item label="NO CATEGORIZADOS :" class="formItem1"></el-form-item></el-col>
+              <el-col :span="11"><el-form-item label="NO CATEGORIZADOS :" class="formItem1"></el-form-item></el-col>
               <el-col :span="2"><el-input @change="calcularTotal" type="text" v-model="formulario.taxes[6].value"
-                  class="uniform-input" size="mini" placeholder="0"><template
+                  class="uniform-input" size="mini" placeholder="0.00"><template
                     slot="append">$</template></el-input></el-col>
             </el-row>
-
 
             <!-- IMPUESTOS NACIONALES -->
 
             <el-row>
-              <el-col :span="10"><el-form-item label="IMPUESTOS NACIONALES :" class="formItem1"></el-form-item></el-col>
+              <el-col :span="11"><el-form-item label="IMPUESTOS NACIONALES :" class="formItem1"></el-form-item></el-col>
               <el-col :span="2"><el-input @change="calcularTotal" type="text" v-model="formulario.taxes[7].value"
-                  class="uniform-input" placeholder="0" size="mini"><template
+                  class="uniform-input" placeholder="0.00" size="mini"><template
                     slot="append">$</template></el-input></el-col>
             </el-row>
-
 
             <!-- IMPUESTOS MUNICIPAL -->
 
             <el-row>
-              <el-col :span="10"><el-form-item label="IMPUESTOS MUNICIPAL :" class="formItem1"></el-form-item></el-col>
+              <el-col :span="11"><el-form-item label="IMPUESTOS MUNICIPAL :" class="formItem1"></el-form-item></el-col>
               <el-col :span="2"><el-input @change="calcularTotal" type="text" v-model="formulario.taxes[8].value"
-                  class="uniform-input" size="mini" placeholder="0"><template
+                  class="uniform-input" size="mini" placeholder="0.00"><template
                     slot="append">$</template></el-input></el-col>
             </el-row>
-
 
             <!-- SIRCREB -->
 
             <el-row>
-              <el-col :span="10"><el-form-item label="SIRCREB :" class="formItem1"></el-form-item></el-col>
+              <el-col :span="11"><el-form-item label="SIRCREB :" class="formItem1"></el-form-item></el-col>
               <el-col :span="2"><el-input @change="calcularTotal" type="text" v-model="formulario.taxes[9].value"
-                  class="uniform-input" size="mini" placeholder="0"><template
+                  class="uniform-input" size="mini" placeholder="0.00"><template
                     slot="append">$</template></el-input></el-col>
             </el-row>
           </el-col>
@@ -228,29 +219,34 @@
           <el-col :span="8">
             <div class="columnaIva">
 
-              <el-row :gutter="20">
+              <el-row :gutter="10">
                 <el-form-item class="ivas" label="IVA :">
                   <div>
-                    <el-input type="text" v-model="tasaIva" class="uniform-input" style="width:70px" size="mini"
+                    <el-input type="text" v-model="tasaIva" class="uniform-input" style="width:120px" size="mini"
                       placeholder="Tasa"></el-input>
-                    <el-input type="text" v-model="netoIva" class="uniform-input" size="mini" style="width:70px"
+                    <el-input type="text" v-model="netoIva" class="uniform-input" size="mini" style="width:120px"
                       placeholder="Neto"></el-input>
-                    <el-input type="text" v-model="montoIva" class="uniform-input" style="width:70px" size="mini"
-                      placeholder=""></el-input>
+                    <!-- <el-input type="text" v-model="montoIva" class="uniform-input" style="width:70px" size="mini"
+                      placeholder=""></el-input> -->
+                    <el-select v-model="formulario.invoice.heading" class="uniform-input" style="width:120px" size="mini" placeholder="Rubro">
+                      <el-option v-for="item in tablaRubrosDelFinal" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                    </el-select>
                     <el-button size="mini" type="info" style="margin-left: 2%" @click="pushIva()">+</el-button>
                   </div>
 
-                  <el-table :data="ivas" style="width: 90%">
-                    <el-table-column label="Tasa IVA" prop="vat_rate" width="100">
+                  <el-table :data="ivas" style="width: 99%">
+                    <el-table-column label="Alicuota" prop="vat_rate" width="80">
                     </el-table-column>
-                    <el-table-column label="Neto" prop="net" width="100">
+                    <el-table-column label="Neto" prop="net" width="80">
                     </el-table-column>
-                    <el-table-column label="Monto IVA" prop="value" width="100">
+                    <el-table-column label="IVA" prop="value" width="70">
+                    </el-table-column>
+                    <el-table-column label="Rubro" prop="heading" width="100">
                     </el-table-column>
                     <el-table-column align="right">
                       <template slot-scope="scope">
                         <el-button size="mini" type="danger"
-                          @click="handleDeleteIvas(scope.$index, scope.row)">Delete</el-button>
+                          @click="handleDeleteIvas(scope.$index, scope.row)">Eliminar</el-button>
                       </template>
                     </el-table-column>
                   </el-table>
@@ -259,7 +255,7 @@
               </el-row>
               <el-row :gutter="20">
 
-                <el-col :span="6">
+                <el-col :span="7">
                   <el-form-item label="Jurisdiccion: "></el-form-item></el-col>
                 <el-col :span="2">
 
@@ -271,7 +267,7 @@
                 </el-col>
               </el-row>
               <el-row :gutter="20">
-                <el-col :span="6"><el-form-item label="Credito Fiscal: "></el-form-item></el-col>
+                <el-col :span="7"><el-form-item label="Credito Fiscal: "></el-form-item></el-col>
                 <el-col :span="2"><el-select v-model="formulario.invoice.tax_credit"
                     @change="varControl(formulario.invoice.tax_credit)" class="uniform-input"
                     placeholder="Compras de bienes en General" size="mini">
@@ -280,7 +276,7 @@
                   </el-select></el-col>
               </el-row>
               <el-row :gutter="20">
-                <el-col :span="6" :offset="0"><el-form-item label="Clas IVA: "></el-form-item></el-col>
+                <el-col :span="7" :offset="0"><el-form-item label="Clas IVA: "></el-form-item></el-col>
                 <el-col :span="2" :offset="0">
                   <el-select v-model="formulario.invoice.vat_class" @change="varControl(formulario.invoice.vat_class)"
                     class="uniform-input" placeholder="Compras de bienes en General" size="mini">
@@ -288,22 +284,23 @@
                       :value="item.label"></el-option>
                   </el-select></el-col>
               </el-row>
-
             </div>
           </el-col>
         </el-row>
+
+        <!-- Columna Medio -->
 
         <div class="columnaMedio">
           <el-form-item class="formItem1" label="TOTAL :">
             <el-input @input="" type="text" v-model="formulario.invoice.total_amount" class="uniform-input" size="default"
               readonly></el-input>
           </el-form-item>
-          <el-form-item label="RUBRO :">
+          <!-- <el-form-item label="RUBRO :">
             <el-select size="mini" v-model="formulario.invoice.heading" class="uniform-input" placeholder="Rubros">
               <el-option v-for="item in tablaRubrosDelFinal" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="Tipo Gasto :">
             <el-select size="mini" v-model="formulario.invoice.expense_type" class="uniform-input"
               placeholder="Tipo Gasto">
@@ -346,6 +343,8 @@ export default {
       montoIva: "",
       tasaIva: "",
       netoIva: "",
+      ivaIva: "",
+      heading: "",
       rules: {
         invoice_class: [
           { required: true, message: 'La clase es obligatoria', trigger: 'blur' },
@@ -380,17 +379,17 @@ export default {
 
       fecha_imputacion: "",
       formulario: {
-        sumIvas: 0,
+        sumIvas: null,
         //cabecera
         invoice: {
-          month_charge: "",
+          month_charge: this.getCurrentMonthYear(),
           fiscal_year_id: null,
           invoice_class: null,
           invoice_type: null,
           invoice_transaction: "S",
           vouchers_point: "",
           invoice_number: "",
-          invoice_date: "",
+          invoice_date: this.getCurrentDate(),
           invoice_cae: "",
           invoice_date_cae: "",
           company_id: null,
@@ -409,52 +408,52 @@ export default {
         [ 
           {
             taxes_id: 16,
-            value: 0,
+            value: null,
             name: "COMERCIO EXTERIOR"
           },
           {
             taxes_id: 3,
-            value: 0,
+            value: null,
             name: "PERCEPCION IVA"
           },
           {
             taxes_id: 4,
-            value: 0,
+            value: null,
             name: "IMPUESTOS INTERNOS"
           },
           {
             taxes_id: 13,
-            value: 0,
+            value: null,
             name: "IMPORTES NO GRAVADOS"
           },
           {
             taxes_id: 14,
-            value: 0,
+            value: null,
             name: "EXENTOS"
           },
           {
             taxes_id: 15,
-            value: 0,
+            value: null,
             name: "IMPUESTOS MUNICIPALES"
           },
           {
             taxes_id: 6,
-            value: 0,
+            value: null,
             name: "IIBB PERCEPCION"
           },
           {
             taxes_id: 5,
-            value: 0,
+            value: null,
             name: "NO CATEGORIZADOS"
           },
           {
             taxes_id: 7,
-            value: 0,
+            value: null,
             name: "IMPUESTOS NACIONALES"
           },
           {
             taxes_id: 10,
-            value: 0,
+            value: null,
             name: "SIRCREB"
           },
         ],
@@ -540,19 +539,34 @@ export default {
   },
   methods: {
     pushIva() {
-      let iva = {
-        taxes_id: 1,
-        name: "IVA",
-        vat_rate: this.tasaIva + "%",
-        value: this.montoIva,
-        net: this.netoIva
+
+      if (!this.tasaIva) {
+      this.tasaIva = "21";
       }
+
+      this.ivaIva = parseFloat(this.tasaIva) * (parseFloat(this.netoIva)/100)
+      this.montoIva = parseFloat(this.ivaIva) 
+      if (!isNaN(parseFloat(this.tasaIva))) {
+        let iva = {
+          taxes_id: 1,
+          name: "IVA",
+          vat_rate: this.tasaIva + "%",
+          value: this.montoIva,
+          net: this.netoIva,
+          heading: this.formulario.invoice.heading
+      }
+
       this.formulario.taxes.push(iva)
       this.ivas.push(iva)
+      let total = ""
+      this.netoIva = ""
       this.tasaIva = ""
       this.montoIva = ""
-      this.netoIva = ""
+      this.formulario.invoice.heading = ""
       this.calcularTotal()
+      } else {
+        console.error("El valor de tasaIva no es un número válido.")
+      }
     },
     handleDeleteIvas(index, row) {
       this.neto = Number(this.neto) - Number(row.net)
@@ -560,6 +574,20 @@ export default {
       this.iva = Number(this.iva) - Number(row.value)
       this.formulario.sumIvas = this.iva
       this.ivas.splice(index, 1)
+    },
+    getCurrentDate() {
+      const today = new Date();
+      today.setHours(today.getHours() - today.getTimezoneOffset() / 60);
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const day = String(today.getDate() + 1).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    },
+    getCurrentMonthYear() {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 2).padStart(2, '0');
+      return `${year}-${month}`;
     },
     async getJurisdiction() {
       try {
@@ -758,52 +786,52 @@ export default {
         taxes: [
           {
             taxes_id: 16,
-            value: 0,
+            value: null,
             name: "COMERCIO EXTERIOR"
           },
           {
             taxes_id: 3,
-            value: 0,
+            value: null,
             name: "PERCEPCION IVA"
           },
           {
             taxes_id: 4,
-            value: 0,
+            value: null,
             name: "IMPUESTOS INTERNOS"
           },
           {
             taxes_id: 13,
-            value: 0,
+            value: null,
             name: "IMPORTES NO GRAVADOS"
           },
           {
             taxes_id: 14,
-            value: 0,
+            value: null,
             name: "EXENTOS"
           },
           {
             taxes_id: 15,
-            value: 0,
+            value: null,
             name: "IMPUESTOS MUNICIPALES"
           },
           {
             taxes_id: 6,
-            value: 0,
+            value: null,
             name: "IIBB PERCEPCION"
           },
           {
             taxes_id: 5,
-            value: 0,
+            value: null,
             name: "NO CATEGORIZADOS"
           },
           {
             taxes_id: 7,
-            value: 0,
+            value: null,
             name: "IMPUESTOS NACIONALES"
           },
           {
             taxes_id: 10,
-            value: 0,
+            value: null,
             name: "SIRCREB"
           },
         ],

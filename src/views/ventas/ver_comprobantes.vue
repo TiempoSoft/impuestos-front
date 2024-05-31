@@ -3,36 +3,22 @@
     <el-card>
       <div class="row">
         <div class="col-100">
-          <div class="col-100">
-            <h3>Comprobantes Emitidos</h3>
-          </div>
+          <h3>Comprobantes Recibidos</h3>
         </div>
       </div>
     </el-card>
 
-    <div style="display: flex; justify-content: flex-end">
+    <div class="main-content">
       <el-card class="Scroll" style="width: 100%">
-        <el-table :data="tableData" style="width: 100%" align="center">
-          <el-table-column prop="invoice_date" label="Fecha" width="120">
-            <!-- Ancho ajustado -->
+        <el-table :data="tableData" class="tableStyle" align="center">
+          <el-table-column prop="invoice_date" label="Fecha" width="190">
             <template slot-scope="scope">
-              {{ scope.row.invoice_date | formatDate }}
-            </template>
-          </el-table-column>
-          <el-table-column prop="vouchers_point" label="N Comprobante" width="130">
-            <!-- Ancho ajustado -->
-          </el-table-column>
-          <el-table-column prop="name" label="Razon Social" width="220">
-            <!-- Ancho ajustado -->
-          </el-table-column>
-          <el-table-column prop="cuit_number" label="CUIT" width="130">
-            <!-- Ancho ajustado -->
-          </el-table-column>
-          <el-table-column prop="total_amount" label="Monto Total" width="120">
-            <!-- Ancho ajustado -->
-          </el-table-column>
-          <el-table-column width="150">
-            <!-- Ancho ajustado -->
+              {{ scope.row.invoice_date | formatDate }} </template></el-table-column>
+          <el-table-column prop="invoice_number" label="N Comprobante" width="240"></el-table-column>
+          <el-table-column prop="name" label="Razon Social" width="250"></el-table-column>
+          <el-table-column prop="cuit_number" label="CUIT" width="220"></el-table-column>
+          <el-table-column prop="total_amount" label="Monto Total" width="110"></el-table-column>
+          <el-table-column width="10">
             <template slot-scope="scope">
               <div style="display: flex; align-items: center; justify-content: flex-end;">
                 <el-button @click="openModalVer(scope.row)" type="text" size="small">
@@ -41,25 +27,117 @@
                 <el-button @click="updateInvoiceFinishDate(scope.row.id)" type="danger" size="small">
                   BORRAR
                 </el-button>
-              </div>
-            </template>
-          </el-table-column>
+              </div></template></el-table-column>
         </el-table>
-      </el-card>
+      </el-card>   
+
+      <el-col :span="4">
+        <h5>NETO</h5>
+        <el-row>
+          <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+          <el-col :span="18" :offset="0"><el-input type="text" size="mini" class="uniform-input"
+            v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"></el-input></el-col>
+        </el-row>
+        <h5>IVA DEBITO FISCAL</h5>
+        <el-row>
+          <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+          <el-col :span="18" :offset="0"><el-input type="text" size="mini" class="uniform-input"
+            v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"></el-input></el-col>
+        </el-row>
+        <h5>IMPORTES NO GRAVADOS</h5>
+        <el-row>
+          <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+          <el-col :span="18" :offset="0"><el-input type="text" size="mini" class="uniform-input"
+            v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"></el-input></el-col>
+        </el-row>
+        <h5>IMPUESTOS INTERNOS</h5>
+        <el-row>
+          <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+          <el-col :span="18" :offset="0"><el-input type="text" size="mini" class="uniform-input"
+            v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"></el-input></el-col>
+        </el-row>
+        <h5>IVA PERCEPCION</h5>
+        <el-row>
+          <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+          <el-col :span="18" :offset="0"><el-input type="text" size="mini" class="uniform-input"
+            v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"></el-input></el-col>
+        </el-row>
+        <h5>EXENTOS</h5>
+        <el-row>
+          <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+          <el-col :span="18" :offset="0"><el-input type="text" size="mini" class="uniform-input"
+            v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"></el-input></el-col>
+        </el-row>
+        <h5>COMERCIO EXTERIOR</h5>
+        <el-row>
+          <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+          <el-col :span="18" :offset="0"><el-input type="text" size="mini" class="uniform-input"
+            v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"></el-input></el-col>
+        </el-row>
+        <h5>IMP. MUNICIPALES</h5>
+        <el-row>
+          <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+          <el-col :span="18" :offset="0"><el-input type="text" size="mini" class="uniform-input"
+            v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"></el-input></el-col>
+        </el-row>
+        <h5>OTROS IMPUESTOS</h5>
+        <el-row>
+          <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+          <el-col :span="18" :offset="0"><el-input type="text" size="mini" class="uniform-input"
+            v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"></el-input></el-col>
+        </el-row>
+        <h5>IMP. NACIONALES</h5>
+        <el-row>
+          <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+          <el-col :span="18" :offset="0"><el-input type="text" size="mini" class="uniform-input"
+            v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"></el-input></el-col>
+        </el-row>
+        <h5>IIBB PERCEPCION</h5>
+        <el-row>
+          <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+          <el-col :span="18" :offset="0"><el-input type="text" size="mini" class="uniform-input"
+            v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"></el-input></el-col>
+        </el-row>
+        <h5>SIRCREB</h5>
+        <el-row>
+          <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+          <el-col :span="18" :offset="0"><el-input type="text" size="mini" class="uniform-input"
+            v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"></el-input></el-col>
+        </el-row>
+        <h5>NO CATEGORIZADOS</h5>
+        <el-row>
+          <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+          <el-col :span="18" :offset="0"><el-input type="text" size="mini" class="uniform-input"
+            v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"></el-input></el-col>
+        </el-row>
+        <h5>TOTAL</h5>
+        <el-row>
+          <el-col :span="11" :offset="0"><el-form-item label="NETO :" class="formItem"></el-form-item></el-col>
+          <el-col :span="18" :offset="0"><el-input type="text" size="mini" class="uniform-input"
+            v-model="formulario.invoice.invoice_net" readonly @change="calcularTotal" placeholder="0.00"></el-input></el-col>
+        </el-row>
+      </el-col>
+      
     </div>
-
-
     <!-- Modal para mostrar los detalles del comprobante -->
-    <modal name="modalVerComprobantes" :scrollable="true" :reset="true" width="90%" height="90%" :clickToClose="true"
-      draggable=".app-container">
+    <modal name="modalVerComprobantes" :scrollable="true" :reset="true" width="90%" height="90%" :clickToClose="true" draggable=".app-container">
       <modalVerComprobantes :row="selectedInvoice" />
     </modal>
+    <div class="classDeBotones">
+      <el-button @click="sendData()" size="medium" type="success" class="float-left">Asiento</el-button>
+      <el-button @click="sendData()" size="medium" type="success" class="float-left">Listar</el-button>
+      <el-button @click="sendData()" size="medium" type="success" class="float-left">Cliente</el-button>
+      <el-button @click="sendData()" size="medium" type="success" class="float-right">Cerrar</el-button>
+    </div>
   </div>
 </template>
 
+
 <script>
 import { getAllInvoices, updateInvoice, finishDateInvoicesTenant, deleteInvoice } from "@/api/request/invoices.tenant";
-import modalVerComprobantes from "./components/modalVerComprobantes.vue";
+import modalVerComprobantes from "../compras/modalVerComprobantes.vue";
+import { createNewFiscalYearInTenant, getAllFiscalYears } from '@/api/request/fiscalYears.tenant';
+import { getAllInvoicesTaxes, getInvoicesTaxesByInvoiceNum } from "@/api/request/invoiceTaxes.tenant";
 
 export default {
   components: { modalVerComprobantes },
@@ -67,28 +145,46 @@ export default {
     return {
       tableData: [],
       fiscalYearTable: [],
+      taxesTable: [],
       selectedInvoice: null,
+      tasaIva: '', // Agrega las demás variables que uses
+    netoIva: '',
+    formulario: {
+      invoice: {
+        heading: '',
+        invoice_jurisdiction: '',
+        tax_credit: '',
+        vat_class: ''
+      }
+    },
+    ivas: [],
+    tablaRubrosDelFinal: [],
+    tablaJurisdiction: [],
+    tablaClasificacion3: [],
+    tablaClasificacion2: [],
     };
   },
   methods: {
     async fetchInvoices() {
       try {
-       this.tableData = await getAllInvoices("S");
-         console.log("datos de tabla", this.tableData);
+        this.tableData = await getAllInvoices("B");
+        console.log("datos de factura", this.tableData);
       } catch (error) {
         console.error("Error al obtener los datos de las facturas:", error);
       }
     },
+
     openModalVer(invoice) {
+      console.log(invoice);
       this.selectedInvoice = invoice;
       this.$modal.show("modalVerComprobantes");
     },
 
-    async updateInvoiceFinishDate() {
+    async updateInvoiceFinishDate(invoiceId) {
       console.log("entra funcion finish");
+      console.log(invoiceId)
       try {
-        const {invoice} = this.tableData ;
-        console.log("updateInvoiceFinishDate llamada con invoiceId:", invoice)
+        const invoice = { id: invoiceId };
         const response = await finishDateInvoicesTenant(invoice);
         if (response) {
           console.log("Factura Eliminada Exitosamente:", response);
@@ -106,7 +202,7 @@ export default {
     },
 
     async editarComprobante(id) {
-      let comprobnante = this.compro;
+      let comprobante = this.compro;
       comprobanteEditado = await updateInvoice(id);
     },
   },
@@ -126,11 +222,32 @@ export default {
 };
 </script>
 
-
 <style scoped>
+h5 {
+  color: grey;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  margin-top: 8px;
+  margin-bottom: 3px;
+  margin-left: 10px;
+}
+
+.float-right {
+  background-color: grey;
+  border: 2px solid grey;
+  padding: 10px 20px;
+}
+
+.float-left {
+  background-color: grey;
+  border: 2px solid grey;
+  padding: 10px 20px;
+}
+
 .Scroll {
-  overflow-y: scroll;
-  height: 80vh;
+  max-height: 100%;
+  overflow-y: auto;
+  height: 85vh;
 }
 
 label {
@@ -157,10 +274,15 @@ textarea {
 
 .tableStyle {
   width: 100%;
+  margin-bottom: -10px;
+  margin-top: -10px;
 }
-.el-table th, .el-table td {
+
+.el-table th,
+.el-table td {
   text-align: center;
 }
+
 .tableStyleButton {
   width: 25%;
 }
@@ -222,7 +344,6 @@ textarea {
   margin-top: 6px;
 }
 
-/* Floating column for inputs: 75% width */
 .col-75 {
   float: left;
   width: 75%;
@@ -232,6 +353,51 @@ textarea {
 
 .col-100 {
   float: left;
-  padding-left: 20%;
+  padding-left: 35%;
+  padding-bottom: 0px;
+  margin-bottom: -10px;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right-column {
+  max-height: 100vh;
+  overflow-y: auto;
+  margin-left: 20px;
+  flex: 0 0 20%;
+  margin-left: 10px;
+}
+
+.main-content {
+  display: flex;
+  width: 104%;
+}
+
+.main-content > .el-card {
+  flex: 1 0 80%;
+}
+
+.columnaIva {
+  display: flex;
+  flex-direction: column;
+}
+
+.float-left {
+  float: left;
+  margin-top: 6px;
+  margin-left: 100px;
+  margin-bottom: 20px;
+}
+
+.float-right {
+  float: right;
+  margin-top: 6px;
+  margin-right: 300px;
+  margin-bottom: 20px;
 }
 </style>
+
+
