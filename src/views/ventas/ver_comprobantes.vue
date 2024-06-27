@@ -390,6 +390,10 @@ textarea {
   margin-top: 6px;
   margin-left: 100px;
   margin-bottom: 20px;
+  background-color: #cfe2f3;
+  border: 2px solid #2986cc;
+  color: #066fcf;
+  padding: 10px 20px;
 }
 
 .float-right {
@@ -397,7 +401,9 @@ textarea {
   margin-top: 6px;
   margin-right: 300px;
   margin-bottom: 20px;
+  background-color: #cfe2f3;
+  border: 2px solid #2986cc;
+  color: #066fcf;
+  padding: 10px 20px;
 }
 </style>
-
-

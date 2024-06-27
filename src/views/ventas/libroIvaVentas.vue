@@ -9,16 +9,16 @@
     </el-card>
     <el-card style="height: 40%">
       <div class="row">
-        <div class="col-5" style="margin-left: 38%">
+        <div class="col-5" style="margin-left: 36%">
           <label>Período:</label>
         </div>
-        <div class="col-15">
+        <div class="col-15" style="margin-left: -6%">
           <el-input id="suma" type="text" />
         </div>
       </div>
 
       <div class="row">
-        <div class="col-10" style="margin-left: 15%">
+        <div class="col-10" style="margin-left: 18%">
           <label style="margin-left: 5%">FECHA INICIAL:</label>
         </div>
         <div class="col-5">
@@ -26,20 +26,20 @@
           </el-date-picker>
         </div>
 
-        <div class="col-10" style="margin-left: 15%">
-          <label style="margin-left: 20%">FECHA FINAL:</label>
+        <div class="col-10" style="margin-left: 20%">
+          <label style="margin-left: -27%">FECHA FINAL:</label>
         </div>
         <div class="col-5">
-          <el-date-picker v-model="value1" type="date" placeholder="Pick a day">
+          <el-date-picker style="margin-left: -50%" v-model="value1" type="date" placeholder="Pick a day">
           </el-date-picker>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-5" style="margin-left: 38%">
+        <div class="col-5" style="margin-left: 33%">
           <label>Establecimiento:</label>
         </div>
-        <div class="col-10" style="margin-left: 5%">
+        <div class="col-10" style="margin-left: -3%">
           <el-select v-model="value" placeholder="Select">
             <el-option
               v-for="item in options"
@@ -53,27 +53,27 @@
       </div>
       <div class="row">
         <div class="col-15" style="margin-left: 28%">
-          <label style="margin-left: 40%">N° De libro</label>
+          <label style="margin-left: 33%">N° De libro</label>
         </div>
         <div class="col-5">
-          <el-input style="margin-left: -80%" id="suma" type="text" />
+          <el-input style="margin-left: -120%" id="suma" type="text" />
         </div>
         <div class="col-15">
-          <label style="margin-left: -2%">N° De páginas</label>
+          <label style="margin-left: -50%">N° De páginas</label>
         </div>
         <div class="col-10">
-          <el-input style="margin-left: -85%" id="suma" type="text" />
+          <el-input style="margin-left: -152%" id="suma" type="text" />
         </div>
       </div>
 
       <div class="row">
-        <div class="col-20" style="margin-left: 20%">
-          <label style="margin-left: 30%">Establec.para título:</label>
+        <div class="col-20" style="margin-left: 25%">
+          <label style="margin-left: 23%">Establec.para título:</label>
         </div>
         <div class="col-5">
-          <el-input style="margin-left: -80%" id="suma" type="text" />
+          <el-input style="margin-left: -70%" id="suma" type="text" />
         </div>
-        <div class="col-10" style="margin-left: 10%">
+        <div class="col-10" style="margin-left: 5%">
           <el-checkbox-group v-model="checkList" :max="1">
             <el-checkbox label="Papel continuo"></el-checkbox>
           </el-checkbox-group>
@@ -83,7 +83,7 @@
 
     <el-card style="text-align: center">
       <el-button style="margin-left: 40%" type="primary" plain>Formato</el-button>
-      <el-button type="primary" plain>Descargar</el-button>
+      <el-button style="margin-left: 5%" type="primary" plain>Descargar</el-button>
     </el-card>
   </div>
 </template>
@@ -110,8 +110,15 @@ export default {
 </script>
 <style scoped>
 /* Style the label to display next to the inputs */
+.el-button {
+  background-color: #cfe2f3;
+  border: 2px solid #2986cc;
+  color: #066fcf;
+  padding: 10px 20px;
+}
+
 label {
-  padding: 6px 6px 6px 0;
+  padding: 10px 50px 6px 0;
   display: inline-block;
 }
 
@@ -125,21 +132,21 @@ label {
 /* Floating column for labels: 25% width */
 .col-5 {
   float: left;
-  width: 4%;
+  width: 10%;
   margin-right: 1%;
   margin-top: 6px;
 }
 
 .col-10 {
   float: left;
-  width: 9%;
+  width: 15%;
   margin-top: 6px;
-  margin-right: 1%;
+  margin-right: -7%;
 }
 .col-15 {
   float: left;
-  margin-right: 1%;
-  width: 14%;
+  margin-right: 6%;
+  width: 15%;
   margin-top: 6px;
 }
 .col-20 {

@@ -14,7 +14,7 @@
           <img src="/05-Salir.png" alt="Smiley face" width="40" height="40" />
           <i class="el-icon-caret-bottom" />
         </div>
-        <el-dropdown-menu slot="dropdown" class="user-dropdown">
+        <el-dropdown-menu slot="" class="user-dropdown">
           <router-link to="/">
             <el-dropdown-item>Salir</el-dropdown-item>
           </router-link>

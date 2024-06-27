@@ -52,12 +52,12 @@
         </el-row>
         <el-row>
           <el-col :span="8">
-            <el-form-item label="N° CAE:">
+            <el-form-item label="N° CAI:">
               <el-input type="text" v-model="formulario.invoice.invoice_cae" size="mini" maxlength="10"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6">
-            <el-form-item label="Vto CAE:">
+            <el-form-item label="Vto CAI:">
               <el-date-picker v-model="formulario.invoice.invoice_date_cae" type="date" format="dd/MM/yyyy" size="mini">
               </el-date-picker>
             </el-form-item>
@@ -122,7 +122,7 @@
               <!-- COMERCIO EXTERIOR -->
 
               <el-row>
-                <el-col :span="11"><el-form-item label="COMERCIO EXTERIOR :" class="formItem1"></el-form-item></el-col>
+                <el-col :span="11"><el-form-item label="IVA RETENCIÓN :" class="formItem1"></el-form-item></el-col>
                 <el-col :span="2"><el-input @change="calcularTotal" type="text" v-model="formulario.taxes[16].value"
                     class="uniform-input" size="mini" placeholder="0.00" clearable><template
                       slot="append">$</template></el-input></el-col>
@@ -178,27 +178,29 @@
                       slot="append">$</template></el-input></el-col>
               </el-row>
 
-              <!-- NO CATEGORIZADOS -->
-
-              <el-row>
-                <el-col :span="11"><el-form-item label="NO CATEGORIZADOS :" class="formItem1"></el-form-item></el-col>
-                <el-col :span="2"><el-input @change="calcularTotal" type="text" v-model="formulario.taxes[5].value"
-                    class="uniform-input" size="mini" placeholder="0.00"><template
-                      slot="append">$</template></el-input></el-col>
-              </el-row>
-            </el-row>
-          </el-col>
-
-          <!-- Segunda columna -->
-
-          <el-col :span="8">
-            <!-- IIBB RETENCION -->
+              <!-- IIBB RETENCION -->
             <el-row>
               <el-col :span="11" :offset="0"><el-form-item label="II.BB RETENCIÓN :"></el-form-item></el-col>
               <el-col :span="2" :offset="0"><el-input @change="calcularTotal" type="text"
                   v-model="formulario.taxes[6].value" class="uniform-input" size="mini" placeholder="0.00"><template
                     slot="append">$</template></el-input></el-col>
             </el-row>
+          </el-row>
+        </el-col>
+
+          <!-- Segunda columna -->
+
+          <el-col :span="8">
+
+            <!-- NO CATEGORIZADOS -->
+
+            <el-row>
+                <el-col :span="11"><el-form-item label="NO CATEGORIZADOS :" class="formItem1"></el-form-item></el-col>
+                <el-col :span="2"><el-input @change="calcularTotal" type="text" v-model="formulario.taxes[5].value"
+                    class="uniform-input" size="mini" placeholder="0.00"><template
+                      slot="append">$</template></el-input></el-col>
+              </el-row>
+            
             <!-- IMPUESTOS NACIONALES -->
 
             <el-row>
@@ -221,7 +223,7 @@
 
             <!-- GANANCIAS RETE  -->
             <el-row>
-              <el-col :span="11" :offset="0"><el-form-item label="GANANCIAS RETENCION :"></el-form-item></el-col>
+              <el-col :span="11" :offset="0"><el-form-item label="GANANCIAS RETENCIÓN :"></el-form-item></el-col>
               <el-col :span="2" :offset="0"><el-input @change="calcularTotal" type="text"
                   v-model="formulario.taxes[9].value" class="uniform-input" size="mini" placeholder="0.00"><template
                     slot="append">$</template></el-input>
@@ -230,7 +232,7 @@
 
             <!-- GANANCIAS PERCEPTCION -->
             <el-row>
-              <el-col :span="11" :offset="0"><el-form-item label="GANANCIAS PERCEPCION :"></el-form-item></el-col>
+              <el-col :span="11" :offset="0"><el-form-item label="GANANCIAS PERCEPCIÓN :"></el-form-item></el-col>
               <el-col :span="2" :offset="0"><el-input @change="calcularTotal" type="text"
                   v-model="formulario.taxes[8].value" class="uniform-input" size="mini" placeholder="0.00"><template
                     slot="append">$</template></el-input>
@@ -249,7 +251,7 @@
             <!-- IMP.CRE/DEB COMPUTAD -->
 
             <el-row>
-              <el-col :span="11" :offset="0"><el-form-item label="IMP.CRE/DEB COMPUTAD :"></el-form-item></el-col>
+              <el-col :span="11" :offset="0"><el-form-item label="IMP.CRE/DEB COMPUTADO :"></el-form-item></el-col>
               <el-col :span="2" :offset="0"><el-input @change="calcularTotal" type="text"
                   v-model="formulario.taxes[11].value" class="uniform-input" size="mini" placeholder="0.00"><template
                     slot="append">$</template></el-input>
@@ -260,7 +262,7 @@
 
             <el-row>
               <el-col :span="11" :offset="0"><el-form-item class="formItem1"
-                  label="IMP.CRE/DEB NO COMPUT. :"></el-form-item></el-col>
+                  label="IMP.CRE/DEB NO COMPUTADO :"></el-form-item></el-col>
               <el-col :span="2" :offset="0">
                 <el-input @change="calcularTotal" type="text" v-model="formulario.taxes[12].value" class="uniform-input"
                   size="mini" placeholder="0.00"><template slot="append">$</template></el-input></el-col>
@@ -276,7 +278,7 @@
                 <el-form-item class="ivas" label="IVA :">
                   <div>
                     <el-input type="text" v-model="tasaIva" class="uniform-input" style="width:120px" size="mini"
-                      placeholder="Tasa"></el-input>
+                      placeholder="Alicuota"></el-input>
                     <el-input type="text" v-model="netoIva" class="uniform-input" size="mini" style="width:120px"
                       placeholder="Neto"></el-input>
                     <!-- <el-input type="text" v-model="montoIva" class="uniform-input" style="width:70px" size="mini"
@@ -360,7 +362,8 @@
           </el-form-item>
         </div>
         <div class="classDeBotones">
-          <el-button @click="sendData()" size="medium" type="success">GRABAR</el-button>
+          <el-button @click="sendData()" size="medium" type="success" class="float-left">BUSCAR</el-button>
+          <el-button @click="sendData()" size="medium" type="success" class="float-left">GRABAR</el-button>
         </div>
       </el-card>
     </el-form>
@@ -554,7 +557,7 @@ export default {
       tablaClasificacion2: [
         {
           value: "Compras de bienes en general",
-          label: "Compras de bienes en general"
+          label: "Compras de bienes en general",
         },
         {
           value: "Locaciones",
@@ -1031,13 +1034,21 @@ textarea {
   flex-wrap: nowrap;
   flex-direction: row;
   justify-content: space-between;
+}
 
+.float-left {
+  background-color: #cfe2f3;
+  border: 2px solid #2986cc;
+  color: #066fcf;
+  padding: 10px 20px;
 }
 
 .classDeBotones {
   display: flex;
   align-content: center;
   justify-content: center;
+ 
+  padding: 10px 20px;
 }
 
 .columna {

@@ -176,17 +176,59 @@ export const constantRoutes = [
     meta: { title: "Compras", icon: "usuarios" },
     children: [
       {
-        path: "compras",
-        name: "Compras",
-        component: () => import("@/views/compras/carga_de_comprobantes"),
-        meta: { title: "Cargar Comp." },
+        path: "CargarComprobanteCompras",
+        name: "Cargar comprobantes",
+        component: () => import("@/views/compras/CargarComprobanteCompras"),
+        meta: { title: "Cargar comprobantes" },
       },
       {
-        path: "vercomprobantes",
-        name: "vercomprobantes",
-        component: () => import("@/views/compras/ver_comprobantes"),
-        meta: { title: "Ver Comp." },
+        path: "modalVerComprobantes",
+        name: "Ver comprobantes",
+        component: () => import("@/views/compras/modalVerComprobantes"),
+        meta: { title: "Ver comprobantes" },
       },
+      {
+        path: "LibroIvaCompras",
+        name: "Libro IVA compras",
+        component: () => import("@/views/compras/LibroIvaCompras"),
+        meta: { title: "Libro IVA compras" },
+      },
+      {
+        path: "TotalesDeCompras",
+        name: "Totales de compras y gastos",
+        component: () => import("@/views/compras/TotalesDecompras"),
+        meta: { title: "Totales de compras y gastos" },
+      },
+      /*{
+        path: "ConsultaCompras",
+        name: "Consulta compras y gastos",
+        component: () => import("@/views/compras/ConsultaCompras"),
+        meta: { title: "Consulta compras y gastos" },
+      },*/
+      /*{
+        path: "ListadoControlCompras",
+        name: "Listado de control compras",
+        component: () => import("@/views/compras/ListadoControlCompras"),
+        meta: { title: "Listado de control compras" },
+      },*/
+      /*{
+        path: "ListadoRubrosCompras",
+        name: "Listado de rubros y tipos de gasto compras",
+        component: () => import("@/views/compras/ListadoRubrosCompras"),
+        meta: { title: "Listado de rubros y tipos de gasto compras" },
+      },*/
+      /*{
+        path: "BorrarLibroIvaCompras",
+        name: "Borrar libro IVA compras",
+        component: () => import("@/views/compras/BorrarLibroIvaCompras"),
+        meta: { title: "Borrar libro IVA compras" },
+      },*/
+      /*{
+        path: "ImportacionArchivoElectronicoCompras",
+        name: "Importacion de archivos electronicos",
+        component: () => import("@/views/compras/ImportacionArchivoElectronicoCompras"),
+        meta: { title: "Importacion de archivos electronicos" },
+      },*/
     ],
   },
 
@@ -208,6 +250,24 @@ export const constantRoutes = [
         component: () => import("@/views/ventas/ver_comprobantes"),
         meta: { title: "Ver Comp." },
       },
+      {
+        path: "libroIvaVentas",
+        name: "Libro Ventas",
+        component: () => import("@/views/ventas/libroIvaVentas"),
+        meta: { title: "Libro Iva" },
+      },
+      {
+        path: "totalesDeVentas",
+        name: "Totales de Ventas y Gastos",
+        component: () => import("@/views/ventas/totalesDeVentas"),
+        meta: { title: "Totales de Ventas y Gastos" },
+      },
+      /*{
+        path: "ConsultaVentas",
+        name: "Consulta Ventas",
+        component: () => import("@/views/ventas/ConsultaVentas"),
+        meta: { title: "Consulta Ventas" },
+      },*/
     ],
   },
 

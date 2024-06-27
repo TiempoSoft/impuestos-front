@@ -1,67 +1,53 @@
 <template>
   <div class="app-container">
-    <el-card style="height: 40%; text-align: center">
-      <el-checkbox-group v-model="checkList" :max="1">
-        <el-checkbox label="1 Reporte Rápido"></el-checkbox>
-        <el-checkbox label="2 Libro c/cabecera"></el-checkbox>
-        <el-checkbox label="3 Libro s/cabecera"></el-checkbox>
-      </el-checkbox-group>
-    </el-card>
   
     <el-card style="height: 40%">
       <div class="row">
-        <div class="col-20" style="margin-left: 14%">
+        <div class="col-20" style="margin-left: 18%">
           <el-radio v-model="radio" label="1">Por mes de imputación</el-radio>
         </div>
         <div class="col-5">
-          <label style="margin-left: 10%">INICIAL:</label>
+          <label style="margin-left: -45%">DE:</label>
         </div>
         <div class="col-5">
-          <el-input id="suma" type="text" />
-        </div>
-        <div class="col-10">
-          <el-input id="suma" type="text" />
+          <el-input id="suma" type="text" style="margin-left: -125%"/>
         </div>
         <div class="col-5">
-          <label style="margin-left: 20%">FINAL:</label>
+          <el-input id="suma" type="text" style="margin-left: -125%"/>
         </div>
         <div class="col-5">
-          <el-input id="suma" type="text" />
+          <label style="margin-left: -75%">A:</label>
         </div>
-        <div class="col-10">
-          <el-input id="suma" type="text" />
+        <div class="col-5">
+          <el-input id="suma" type="text" style="margin-left: -160%"/>
+        </div>
+        <div class="col-5">
+          <el-input id="suma" type="text" style="margin-left: -161%"/>
         </div>
       </div>
-
       <div class="row">
-        <div class="col-20" style="margin-left: 14%">
+        <div class="col-20" style="margin-left: 18%">
           <el-radio v-model="radio" label="1">Por fecha del Comprobante</el-radio>
         </div>
         <div class="col-5">
-          <label style="margin-left: 75%">DE:</label>
-        </div>
-        <div class="col-5">
-          <el-input id="suma" type="text" />
+          <label style="margin-left: -45%">DE:</label>
         </div>
         <div class="col-10">
-          <el-input id="suma" type="text" />
+          <el-input id="suma" type="text" style="margin-left: -65%"/>
         </div>
         <div class="col-5">
-          <label style="margin-left: 75%">A:</label>
-        </div>
-        <div class="col-5">
-          <el-input id="suma" type="text" />
+          <label style="margin-left: -115%">A:</label>
         </div>
         <div class="col-10">
-          <el-input id="suma" type="text" />
+          <el-input id="suma" type="text" style="margin-left: -99%"/>
         </div>
       </div>
       <div class="row">
-        <div class="col-15" style="margin-left: 18%">
-          <label>Establecimiento:</label>
+        <div class="col-15" style="margin-left: 32%">
+          <label>Filtrar por:</label>
         </div>
-        <div class="col-10" style="margin-left: -10%">
-          <el-select v-model="value" placeholder="Select">
+        <div class="col-10" style="margin-left: -13%">
+          <el-select v-model="value" placeholder="Rubros">
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -71,39 +57,28 @@
             </el-option>
           </el-select>
         </div>
-        <div style="margin-left: 18%">
-          <el-checkbox-group v-model="checkList" :max="2">
-            <el-checkbox label="Papel continuo"></el-checkbox>
-            <el-checkbox style="margin-left: 10%" label="Incluye la CAI."></el-checkbox>
-          </el-checkbox-group>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-15" style="margin-left: 14%">
-          <label>Período:</label>
-        </div>
-        <div class="col-10" style="margin-left: -13%">
-          <el-input id="suma" type="text" />
-        </div>
-        <div class="col-15">
-          <label style="margin-left: 30%">N° De libro</label>
-        </div>
-        <div class="col-5">
-          <el-input style="margin-left: -200%" id="suma" type="text" />
-        </div>
-        <div class="col-15">
-          <label style="margin-left: 5%">N° De páginas</label>
-        </div>
-        <div class="col-10">
-          <el-input style="margin-left: -80%" id="suma" type="text" />
+        <div class="col-10" style="margin-left: 3.2%">
+          <el-select v-model="value" placeholder="Mercaderia XXX">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
         </div>
       </div>
     </el-card>
     <el-card style="text-align: center">
-      <el-button @click="abrirModalFormatoDeImpresionLibroIva()" style="margin-left: 55%"
-        type="primary" plain >Listar</el-button>
-      <el-button style="margin-left: 5%" type="primary" plain>Formato</el-button>
-      <el-button style="margin-left: 5%" type="primary" plain>Resumen</el-button>
+      <el-button
+        @click="abrirModalFormatoDeImpresionLibroIva()"
+        style="margin-left: 25%"
+        type="primary"
+        plain
+        >Formato</el-button
+      >
+      <el-button style="margin-left: 3%" type="primary" plain>Descargar</el-button>
     </el-card>
     <modal
       name="FormatoDeImpresionLibroIva"
@@ -172,7 +147,7 @@ label {
 /* Floating column for labels: 25% width */
 .col-5 {
   float: left;
-  width: 6%;
+  width: 8%;
   margin-right: -1%;
   margin-top: 10px;
 }

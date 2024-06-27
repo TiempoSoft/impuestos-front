@@ -1,20 +1,20 @@
 <template>
   <div class="app-container">
     <el-card>
-      <div class="row" style="margin-left: 30%">
+      <div class="row" style="margin-left: 27.7%">
         <div class="col-70">
           <label>Fechas de los comprobantes </label>
-          <label>desde: </label>
+          <label style="margin-left: 1%">Desde:</label>
           <el-date-picker
-            style="width: 9%"
+            style="width: 15%"
             v-model="value1"
             type="date"
             placeholder="Pick a day"
           >
           </el-date-picker>
-          <label style="margin-left: 1%">hasta: </label>
+          <label style="margin-left: 1%">Hasta:</label>
           <el-date-picker
-            style="width: 9%; margin-left: 0%"
+            style="width: 15%; margin-left: 0%"
             v-model="value1"
             type="date"
             placeholder="Pick a day"
@@ -24,35 +24,35 @@
         <div class="col-5" style="margin-left: -1%"></div>
       </div>
 
-      <div class="row" style="margin-left: 30%">
+      <div class="row" style="margin-left: 26.3%">
         <div class="col-70">
           <div class="col-5" style="margin-left: 6%">
-            <label>Establecimientos: </label>
+            <label>Establecimientos</label>
           </div>
           <div class="col-5"></div>
-          <div class="col-5" style="margin-left: 5%">
-            <label>Desde: </label>
+          <div class="col-5" style="margin-left: 1%">
+            <label>Desde:</label>
           </div>
-          <div class="col-10" style="margin-left: 1%">
+          <div class="col-10" style="margin-left: 0%">
             <el-input id="suma" type="text" />
           </div>
 
           <div class="col-5" style="margin-left: 0%">
-            <label style="margin-left: 1%">hasta: </label>
+            <label style="margin-left: 0%">Hasta:</label>
           </div>
 
-          <div class="col-10" style="margin-left: 1%">
+          <div class="col-10" style="margin-left: -0.5%">
             <el-input id="suma" type="text" />
           </div>
         </div>
       </div>
 
       <div class="row" style="margin-left: 30%">
-        <div class="col-15" style="margin-left: 1%">
+        <div class="col-15" style="margin-left: 11%">
           <br />
           <label>Agrupar por:</label>
         </div>
-        <div class="col-15" style="margin-left: -2%">
+        <div class="col-15" style="width: 18%; margin-left: -7%">
           <br />
           <el-select v-model="value" placeholder="Select">
             <el-option
@@ -64,17 +64,17 @@
             </el-option>
           </el-select>
         </div>
-        <div class="col-10" style="margin-left: 6%">
+        <div class="col-10" style="margin-left: 2%">
           <el-checkbox-group v-model="checkList" :max="1">
-            <el-checkbox label="Papel continuo"></el-checkbox><br />
-            <el-checkbox label="Papel continuo"></el-checkbox>
+            <el-checkbox label="Incluir subtotales mensuales"></el-checkbox><br />
+            <el-checkbox label="Incluir subtotales por puntos de venta"></el-checkbox>
           </el-checkbox-group>
         </div>
       </div>
     </el-card>
 
     <el-card>
-      <el-button style="margin-left: 48%" type="primary" plain>Formato</el-button>
+      <el-button style="margin-left: 55%" type="primary" plain>Formato</el-button>
       <el-button type="primary" plain>Descargar</el-button>
     </el-card>
   </div>
@@ -119,7 +119,7 @@ export default {
 <style scoped>
 /* Style the label to display next to the inputs */
 label {
-  padding: 6px 6px 6px 0;
+  padding: 6px 16px 16px 0;
   display: inline-block;
 }
 
@@ -140,9 +140,9 @@ label {
 
 .col-10 {
   float: left;
-  width: 9%;
+  width: 18%;
   margin-top: 6px;
-  margin-right: 1%;
+  margin-right: -2%;
 }
 .col-15 {
   float: left;
