@@ -36,7 +36,7 @@
       </div>
 
       <div class="row">
-        <div class="col-5" style="margin-left: 33%">
+        <div class="col-5" style="margin-left: 18%">
           <label>Establecimiento:</label>
         </div>
         <div class="col-10" style="margin-left: -3%">
@@ -49,6 +49,12 @@
             >
             </el-option>
           </el-select>
+        </div>
+        <div class="col-20" style="margin-left: 12.7%">
+          <label style="margin-left: 23%">Establec. para título:</label>
+        </div>
+        <div class="col-5">
+          <el-input style="margin-left: -70%" id="suma" type="text" />
         </div>
       </div>
       <div class="row">
@@ -67,23 +73,13 @@
       </div>
 
       <div class="row">
-        <div class="col-20" style="margin-left: 25%">
-          <label style="margin-left: 23%">Establec.para título:</label>
-        </div>
-        <div class="col-5">
-          <el-input style="margin-left: -70%" id="suma" type="text" />
-        </div>
-        <div class="col-10" style="margin-left: 5%">
-          <el-checkbox-group v-model="checkList" :max="1">
-            <el-checkbox label="Papel continuo"></el-checkbox>
-          </el-checkbox-group>
-        </div>
+        //
       </div>
     </el-card>
 
     <el-card style="text-align: center">
       <el-button style="margin-left: 40%" type="primary" plain>Formato</el-button>
-      <el-button style="margin-left: 5%" type="primary" plain>Descargar</el-button>
+      <el-button style="margin-left: 5%" type="primary" plain>Listar</el-button>
     </el-card>
   </div>
 </template>

@@ -7,13 +7,13 @@
           <el-radio v-model="radio" label="1">Por mes de imputación</el-radio>
         </div>
         <div class="col-5">
-          <label style="margin-left: -45%">DE:</label>
+          <label style="margin-left: -75%">DE:</label>
         </div>
         <div class="col-5">
-          <el-input id="suma" type="text" style="margin-left: -125%"/>
+          <el-input id="suma" type="text" style="margin-left: -150%"/>
         </div>
-        <div class="col-5">
-          <el-input id="suma" type="text" style="margin-left: -125%"/>
+        <div class="col-10">
+          <el-input id="suma" type="text" style="margin-left: -50%"/>
         </div>
         <div class="col-5">
           <label style="margin-left: -75%">A:</label>
@@ -21,39 +21,61 @@
         <div class="col-5">
           <el-input id="suma" type="text" style="margin-left: -160%"/>
         </div>
-        <div class="col-5">
-          <el-input id="suma" type="text" style="margin-left: -161%"/>
+        <div class="col-10">
+          <el-input id="suma" type="text" style="margin-left: -53%"/>
         </div>
       </div>
+
       <div class="row">
         <div class="col-20" style="margin-left: 18%">
           <el-radio v-model="radio" label="1">Por fecha del Comprobante</el-radio>
         </div>
         <div class="col-5">
-          <label style="margin-left: -45%">DE:</label>
-        </div>
-        <div class="col-10">
-          <el-input id="suma" type="text" style="margin-left: -65%"/>
+          <label style="margin-left: -75%">DE:</label>
         </div>
         <div class="col-5">
-          <label style="margin-left: -115%">A:</label>
+          <el-input id="suma" type="text" style="margin-left: -150%"/>
         </div>
         <div class="col-10">
-          <el-input id="suma" type="text" style="margin-left: -99%"/>
+          <el-input id="suma" type="text" style="margin-left: -50%"/>
+        </div>
+        <div class="col-5">
+          <label style="margin-left: -75%">A:</label>
+        </div>
+        <div class="col-5">
+          <el-input id="suma" type="text" style="margin-left: -160%"/>
+        </div>
+        <div class="col-10">
+          <el-input id="suma" type="text" style="margin-left: -53%"/>
         </div>
       </div>
       <div class="row">
-        <div class="col-15" style="margin-left: 32%">
+        <div class="col-10" style="margin-left: 20%">
+          <label v-model="value" label="1">Establecimientos</label>
+        </div>
+        <div class="col-15">
+          <label style="margin-left: -30%">DESDE:</label>
+        </div>
+        <div class="col-10">
+          <el-input id="suma" type="text" style="margin-left: -135%"/>
+        </div>
+        <div class="col-5">
+          <label style="margin-left: -280%">HASTA:</label>
+        </div>
+        <div class="col-10">
+          <el-input id="suma" type="text" style="margin-left: -99%"/>
+        </div></div>
+      <div class="row">
+        <div class="col-15" style="margin-left: 30.5%">
           <label>Filtrar por:</label>
         </div>
-        <div class="col-10" style="margin-left: -13%">
+        <div class="col-10" style="margin-left: -12%">
           <el-select v-model="value" placeholder="Rubros">
             <el-option
               v-for="item in options"
               :key="item.value"
               :label="item.label"
-              :value="item.value"
-            >
+              :value="item.value">
             </el-option>
           </el-select>
         </div>
@@ -63,22 +85,59 @@
               v-for="item in options"
               :key="item.value"
               :label="item.label"
-              :value="item.value"
-            >
+              :value="item.value">
             </el-option>
           </el-select>
+        </div></div>
+      <div class="row">
+        <div class="col-15" style="margin-left: 29%">
+          <label>Tipo de Gastos:</label>
+        </div>
+        <div class="col-10" style="margin-left: -10.3%">
+          <el-select v-model="value" placeholder="Todos">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </div>
+        <div class="col-15" style="margin-left: 2.5%">
+          <label>Agrupado por:</label>
+        </div>
+        <div class="col-10" style="margin-left: -10.3%">
+          <el-select v-model="value" placeholder="Rubro+Tipo de Gasto">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </div>
+        
+        <div style="margin-left: 20%">
+          <el-checkbox-group v-model="checkList" :max="2">
+            <el-checkbox label="¿Incluye detalle de los comprobantes?"></el-checkbox>
+          </el-checkbox-group>
+        </div>
+        <div style="margin-left: 20%">
+          <el-checkbox-group v-model="checkList" :max="2">
+            <el-checkbox label="Incluir subtotales mensuales"></el-checkbox>
+          </el-checkbox-group>
         </div>
       </div>
     </el-card>
     <el-card style="text-align: center">
       <el-button
         @click="abrirModalFormatoDeImpresionLibroIva()"
-        style="margin-left: 25%"
+        style="margin-left: 55%"
         type="primary"
         plain
-        >Formato</el-button
+        >Listar</el-button
       >
-      <el-button style="margin-left: 3%" type="primary" plain>Descargar</el-button>
+      <el-button style="margin-left: 5%" type="primary" plain>Formato</el-button>
     </el-card>
     <modal
       name="FormatoDeImpresionLibroIva"
@@ -102,12 +161,32 @@ export default {
     return {
       options: [
         {
-          value: "Todos",
-          label: "Todos",
+          value: "Ninguno",
+          label: "Ninguno",
         },
         {
-          value: "Algunos",
-          label: "Algunos",
+          value: "Rubros",
+          label: "Rubros",
+        },
+        {
+          value: "Tipo de gasto",
+          label: "Tipo de gasto",
+        },
+        {
+          value: "Jurisdicciones",
+          label: "Jurisdicciones",
+        },
+        {
+          value: "Proveedor",
+          label: "Proveedor",
+        },
+        {
+          value: "Comprobantes",
+          label: "Comprobantes",
+        },
+        {
+          value: "Caracter en IVA",
+          label: "Caracter en IVA",
         },
       ],
       value: "",
@@ -117,7 +196,6 @@ export default {
   },
   methods: {
     abrirModalFormatoDeImpresionLibroIva() {
-      console.log("hola");
       this.$modal.show("FormatoDeImpresionLibroIva");
     },
   },
@@ -147,7 +225,7 @@ label {
 /* Floating column for labels: 25% width */
 .col-5 {
   float: left;
-  width: 8%;
+  width: 6%;
   margin-right: -1%;
   margin-top: 10px;
 }

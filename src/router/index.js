@@ -194,35 +194,17 @@ export const constantRoutes = [
         meta: { title: "Libro IVA compras" },
       },
       {
-        path: "TotalesDeCompras",
-        name: "Totales de compras y gastos",
-        component: () => import("@/views/compras/TotalesDecompras"),
-        meta: { title: "Totales de compras y gastos" },
+        path: "ListadoCompras",
+        name: "Listado de compras",
+        component: () => import("@/views/compras/ListadoCompras"),
+        meta: { title: "Listado de compras" },
       },
-      /*{
-        path: "ConsultaCompras",
-        name: "Consulta compras y gastos",
-        component: () => import("@/views/compras/ConsultaCompras"),
-        meta: { title: "Consulta compras y gastos" },
-      },*/
-      /*{
-        path: "ListadoControlCompras",
-        name: "Listado de control compras",
-        component: () => import("@/views/compras/ListadoControlCompras"),
-        meta: { title: "Listado de control compras" },
-      },*/
-      /*{
-        path: "ListadoRubrosCompras",
-        name: "Listado de rubros y tipos de gasto compras",
-        component: () => import("@/views/compras/ListadoRubrosCompras"),
-        meta: { title: "Listado de rubros y tipos de gasto compras" },
-      },*/
-      /*{
-        path: "BorrarLibroIvaCompras",
-        name: "Borrar libro IVA compras",
-        component: () => import("@/views/compras/BorrarLibroIvaCompras"),
-        meta: { title: "Borrar libro IVA compras" },
-      },*/
+      {
+        path: "BorrarCompras",
+        name: "Borrar comprobantes de Compras",
+        component: () => import("@/views/compras/BorrarCompras"),
+        meta: { title: "Borrar comprobantes de Compras" },
+      },
       /*{
         path: "ImportacionArchivoElectronicoCompras",
         name: "Importacion de archivos electronicos",
@@ -240,34 +222,34 @@ export const constantRoutes = [
     children: [
       {
         path: "ventas",
-        name: "Ventas",
+        name: "Cargar comprobantes",
         component: () => import("@/views/ventas/carga_de_comprobantes"),
-        meta: { title: "Cargar Comp." },
+        meta: { title: "Cargar comprobantes" },
       },
       {
         path: "vercomprobantes",
-        name: "vercomprobantes",
+        name: "Ver comprobantes",
         component: () => import("@/views/ventas/ver_comprobantes"),
-        meta: { title: "Ver Comp." },
+        meta: { title: "Ver comprobantes" },
       },
       {
         path: "libroIvaVentas",
-        name: "Libro Ventas",
+        name: "Libro IVA Ventas",
         component: () => import("@/views/ventas/libroIvaVentas"),
-        meta: { title: "Libro Iva" },
+        meta: { title: "Libro IVA Ventas" },
       },
       {
-        path: "totalesDeVentas",
-        name: "Totales de Ventas y Gastos",
-        component: () => import("@/views/ventas/totalesDeVentas"),
-        meta: { title: "Totales de Ventas y Gastos" },
+        path: "ListadoVentas",
+        name: "Listado de Ventas",
+        component: () => import("@/views/ventas/ListadoVentas"),
+        meta: { title: "Listado de Ventas" },
       },
-      /*{
-        path: "ConsultaVentas",
-        name: "Consulta Ventas",
-        component: () => import("@/views/ventas/ConsultaVentas"),
-        meta: { title: "Consulta Ventas" },
-      },*/
+      {
+        path: "BorrarVentas",
+        name: "Borrar comprobantes de Ventas",
+        component: () => import("@/views/ventas/BorrarVentas"),
+        meta: { title: "Borrar comprobantes de Ventas" },
+      },
     ],
   },
 

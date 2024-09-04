@@ -10,7 +10,7 @@
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="7">
+          <el-col :span="10">
             <el-form-item label="Comprobante:">
               <el-select default-first-option="" v-model="formulario.invoice.invoice_class" placeholder="Comprobante"
                 @change="updateTipoSelect" size="mini" required>
@@ -37,18 +37,20 @@
                 placeholder="00000000" @blur="rellenarConCerosNC(formulario.invoice.invoice_number, 8)"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="7">
+
+          <el-col :span="16">
             <el-form-item label="Fecha:">
               <el-date-picker v-model="formulario.invoice.invoice_date" size="mini" type="date" format="dd/MM/yyyy"
                 class="select2">
               </el-date-picker>
             </el-form-item>
+            <el-col :span="10">
             <el-form-item label="Imputacion:">
               <el-date-picker v-model="formulario.invoice.month_charge" size="mini" type="month" format="MM/yyyy"
                 class="select2">
               </el-date-picker>
             </el-form-item>
-          </el-col>
+          </el-col></el-col>
         </el-row>
         <el-row>
           <el-col :span="8">
@@ -277,10 +279,10 @@
               <el-row :gutter="10">
                 <el-form-item class="ivas" label="IVA :">
                   <div>
-                    <el-input type="text" v-model="tasaIva" class="uniform-input" style="width:120px" size="mini"
-                      placeholder="Alicuota"></el-input>
                     <el-input type="text" v-model="netoIva" class="uniform-input" size="mini" style="width:120px"
                       placeholder="Neto"></el-input>
+                    <el-input type="text" v-model="tasaIva" class="uniform-input" style="width:120px" size="mini"
+                      placeholder="Alicuota"></el-input>
                     <!-- <el-input type="text" v-model="montoIva" class="uniform-input" style="width:70px" size="mini"
                       placeholder="Monto"></el-input> -->
                     <el-select v-model="formulario.invoice.heading" class="uniform-input" style="width:120px" size="mini" placeholder="Rubro">
@@ -290,9 +292,9 @@
                   </div>
 
                   <el-table :data="ivas" style="width: 99%">
-                    <el-table-column label="Alicuota" prop="vat_rate" width="80">
-                    </el-table-column>
                     <el-table-column label="Neto" prop="net" width="80">
+                    </el-table-column>
+                    <el-table-column label="Alicuota" prop="vat_rate" width="80">
                     </el-table-column>
                     <el-table-column label="IVA" prop="value" width="70">
                     </el-table-column>

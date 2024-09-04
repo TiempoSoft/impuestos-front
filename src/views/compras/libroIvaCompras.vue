@@ -71,25 +71,20 @@
             </el-option>
           </el-select>
         </div>
-        <div style="margin-left: 18%">
-          <el-checkbox-group v-model="checkList" :max="2">
-            <el-checkbox label="Papel continuo"></el-checkbox>
-            <el-checkbox style="margin-left: 10%" label="Incluye la CAI."></el-checkbox>
-          </el-checkbox-group>
-        </div>
+        
       </div>
       <div class="row">
-        <div class="col-15" style="margin-left: 14%">
+        <div class="col-15" style="margin-left: 18%">
           <label>Período:</label>
         </div>
         <div class="col-10" style="margin-left: -13%">
           <el-input id="suma" type="text" />
         </div>
         <div class="col-15">
-          <label style="margin-left: 30%">N° De libro</label>
+          <label style="margin-left: 50%">N° De libro</label>
         </div>
         <div class="col-5">
-          <el-input style="margin-left: -200%" id="suma" type="text" />
+          <el-input style="margin-left: -140%" id="suma" type="text" />
         </div>
         <div class="col-15">
           <label style="margin-left: 5%">N° De páginas</label>

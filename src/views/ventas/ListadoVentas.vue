@@ -46,15 +46,12 @@
           </div>
         </div>
       </div>
-
-      <div class="row" style="margin-left: 30%">
-        <div class="col-15" style="margin-left: 11%">
-          <br />
-          <label>Agrupar por:</label>
+      <div class="row">
+        <div class="col-15" style="margin-left: 34.5%">
+          <label>Filtrar por:</label>
         </div>
-        <div class="col-15" style="width: 18%; margin-left: -7%">
-          <br />
-          <el-select v-model="value" placeholder="Select">
+        <div class="col-10" style="margin-left: -9.5%">
+          <el-select v-model="value" placeholder="Rubros">
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -64,18 +61,30 @@
             </el-option>
           </el-select>
         </div>
-        <div class="col-10" style="margin-left: 2%">
+        <div class="col-10" style="margin-left: 2.2%">
+          <el-select v-model="value" placeholder="Mercaderia XXX">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col-10" style="margin-left: 35%">
           <el-checkbox-group v-model="checkList" :max="1">
             <el-checkbox label="Incluir subtotales mensuales"></el-checkbox><br />
             <el-checkbox label="Incluir subtotales por puntos de venta"></el-checkbox>
           </el-checkbox-group>
-        </div>
-      </div>
+        </div></div>
     </el-card>
 
     <el-card>
       <el-button style="margin-left: 55%" type="primary" plain>Formato</el-button>
-      <el-button type="primary" plain>Descargar</el-button>
+      <el-button type="primary" plain>Listar</el-button>
     </el-card>
   </div>
 </template>
@@ -85,8 +94,8 @@ export default {
     return {
       options: [
         {
-          value: "(No agrupar)",
-          label: "(No agrupar)",
+          value: "Ninguno",
+          label: "Ninguno",
         },
         {
           value: "Rubros",
